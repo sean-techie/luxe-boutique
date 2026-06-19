@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   {
@@ -33,15 +34,17 @@ export default function Home() {
           </h1>
 
           <nav className="flex gap-6 text-sm text-gray-600">
-            <a href="#collection" className="hover:text-black transition">
+            <Link href="/collection" className="hover:text-black transition">
               Collection
-            </a>
-            <a href="#about" className="hover:text-black transition">
+            </Link>
+
+            <Link href="/about" className="hover:text-black transition">
               About
-            </a>
-            <a href="#contact" className="hover:text-black transition">
+            </Link>
+
+            <Link href="/contact" className="hover:text-black transition">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -64,9 +67,12 @@ export default function Home() {
           </p>
 
           <div className="mt-10">
-            <button className="px-8 py-4 rounded-full bg-black text-white hover:scale-105 transition duration-300 shadow-xl">
+            <Link
+              href="/collection"
+              className="inline-block px-8 py-4 rounded-full bg-black text-white hover:scale-105 transition duration-300 shadow-xl"
+            >
               Explore Collection
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -77,6 +83,7 @@ export default function Home() {
               alt="Midnight Stiletto"
               width={500}
               height={700}
+              priority
               className="rounded-[32px] object-cover h-[340px] w-full shadow-2xl"
             />
 

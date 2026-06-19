@@ -1,65 +1,184 @@
 import Image from "next/image";
 
+const products = [
+  {
+    name: "Midnight Stiletto",
+    price: "R1 299",
+    img: "/hero-heels.jpg",
+  },
+  {
+    name: "Silver Elegance Heel",
+    price: "R1 199",
+    img: "/heel-2.jpg",
+  },
+  {
+    name: "Noir Signature Bag",
+    price: "R1 899",
+    img: "/bag-1.jpg",
+  },
+  {
+    name: "Cognac Heritage Bag",
+    price: "R1 699",
+    img: "/bag-2.jpg",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen bg-gradient-to-b from-[#F8F5F2] via-white to-[#F3EFEA] text-[#1C1C1C]">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/50 border-b border-white/30">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-10 py-5">
+          <h1 className="text-xl tracking-[0.35em] font-light">
+            LUMÉE
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+
+          <nav className="flex gap-6 text-sm text-gray-600">
+            <a href="#collection" className="hover:text-black transition">
+              Collection
+            </a>
+            <a href="#about" className="hover:text-black transition">
+              About
+            </a>
+            <a href="#contact" className="hover:text-black transition">
+              Contact
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <section className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p className="uppercase tracking-[0.4em] text-xs text-[#C08A5D]">
+            Luxury Boutique
+          </p>
+
+          <h2 className="text-5xl md:text-7xl font-light leading-none mt-6">
+            Luxury in
+            <br />
+            Every Step
+          </h2>
+
+          <p className="mt-8 text-gray-500 max-w-lg leading-relaxed text-lg">
+            Curated heels and handbags designed for women who embrace
+            elegance, confidence, and timeless sophistication.
+          </p>
+
+          <div className="mt-10">
+            <button className="px-8 py-4 rounded-full bg-black text-white hover:scale-105 transition duration-300 shadow-xl">
+              Explore Collection
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-5">
+          <div className="space-y-5">
+            <Image
+              src="/hero-heels.jpg"
+              alt="Midnight Stiletto"
+              width={500}
+              height={700}
+              className="rounded-[32px] object-cover h-[340px] w-full shadow-2xl"
+            />
+
+            <Image
+              src="/heel-2.jpg"
+              alt="Silver Elegance Heel"
+              width={500}
+              height={500}
+              className="rounded-[32px] object-cover h-[220px] w-full shadow-xl"
+            />
+          </div>
+
+          <div className="space-y-5 pt-10">
+            <Image
+              src="/bag-1.jpg"
+              alt="Noir Signature Bag"
+              width={500}
+              height={500}
+              className="rounded-[32px] object-cover h-[220px] w-full shadow-xl"
+            />
+
+            <Image
+              src="/bag-2.jpg"
+              alt="Cognac Heritage Bag"
+              width={500}
+              height={700}
+              className="rounded-[32px] object-cover h-[340px] w-full shadow-2xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="collection"
+        className="max-w-7xl mx-auto px-6 md:px-10 py-24"
+      >
+        <div className="text-center">
+          <p className="uppercase tracking-[0.4em] text-xs text-[#C08A5D]">
+            Collection
+          </p>
+
+          <h3 className="text-4xl font-light mt-4">
+            Featured Pieces
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-14">
+          {products.map((product, index) => (
+            <div
+              key={index}
+              className="bg-white/80 backdrop-blur-md rounded-[28px] overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <Image
+                src={product.img}
+                alt={product.name}
+                width={500}
+                height={500}
+                className="w-full h-72 object-cover"
+              />
+
+              <div className="p-5">
+                <h4 className="font-medium text-lg">
+                  {product.name}
+                </h4>
+
+                <p className="text-[#C08A5D] mt-2">
+                  {product.price}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="about"
+        className="bg-white py-28 px-6 md:px-10"
+      >
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="uppercase tracking-[0.4em] text-xs text-[#C08A5D]">
+            About
+          </p>
+
+          <h3 className="text-4xl font-light mt-4">
+            Modern Luxury
+          </h3>
+
+          <p className="mt-8 text-gray-500 leading-relaxed text-lg">
+            LUMÉE celebrates timeless elegance through carefully curated
+            heels and handbags. Every piece is selected to elevate style,
+            confidence, and sophistication for the modern woman.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <footer
+        id="contact"
+        className="py-12 text-center text-gray-400"
+      >
+        <p>© {new Date().getFullYear()} LUMÉE Boutique</p>
+        <p className="mt-2">hello@lumeeboutique.com</p>
+      </footer>
+    </main>
   );
 }

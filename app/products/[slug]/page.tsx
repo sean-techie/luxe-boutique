@@ -27,26 +27,24 @@ export default async function ProductPage({
 
   const product = products.find((p) => p.slug === slug);
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   return (
-    <main className="min-h-screen bg-[#F8F5F2] flex items-center justify-center px-6">
-      <div className="grid md:grid-cols-2 gap-12 max-w-5xl items-center">
-
+    <main className="min-h-screen bg-[#F8F5F2] flex items-center justify-center px-6 py-20">
+      <div className="grid md:grid-cols-2 gap-12 max-w-5xl w-full items-center">
         
-        <Image
-          src={product.img}
-          alt={product.name}
-          width={600}
-          height={700}
-          className="rounded-3xl"
-          priority
-        />
+        <div className="relative w-full h-[500px] md:h-[650px]">
+          <Image
+            src={product.img}
+            alt={product.name}
+            fill
+            className="object-cover rounded-3xl"
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
 
-        
-        <div>
+        <div className="flex flex-col justify-center">
           <h1 className="text-4xl font-semibold">{product.name}</h1>
 
           <p className="text-[#C08A5D] text-xl mt-3">
@@ -57,11 +55,10 @@ export default async function ProductPage({
             {product.description}
           </p>
 
-          <button className="mt-8 px-8 py-4 bg-black text-white rounded-full hover:opacity-80 transition">
+          <button className="mt-8 px-8 py-4 bg-black text-white rounded-full w-fit">
             Add to Bag
           </button>
         </div>
-
       </div>
     </main>
   );

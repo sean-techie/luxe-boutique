@@ -1,41 +1,68 @@
 import Image from "next/image";
-import { products } from "@/data/products";
 import { notFound } from "next/navigation";
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products.find((p) => p.slug === params.slug);
+const products = [
+  {
+    slug: "midnight-stiletto",
+    name: "Midnight Stiletto",
+    price: "R1 299",
+    img: "/hero-heels.jpg",
+    description: "Luxury black stiletto designed for elegance and confidence.",
+  },
+  {
+    slug: "nude-signature-heel",
+    name: "Nude Signature Heel",
+    price: "R1 399",
+    img: "/nude.jpg",
+    description: "Soft nude heel made for everyday elegance.",
+  },
+];
 
-  if (!product) return notFound();
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const product = products.find((p) => p.slug === slug);
+
+  if (!product) {
+    notFound();
+  }
 
   return (
-    <main className="min-h-screen bg-[#F7F3EE] text-[#1C1C1C]">
-      <section className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid md:grid-cols-2 gap-12">
-        
-        <div className="relative h-[450px] rounded-[28px] overflow-hidden">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        </div>
+    <main className="min-h-screen bg-[#F8F5F2] flex items-center justify-center px-6">
+      <div className="grid md:grid-cols-2 gap-12 max-w-5xl items-center">
 
-        <div className="space-y-6">
-          <h1 className="text-4xl font-light">{product.name}</h1>
-          <p className="text-[#A67C3D] text-xl font-medium">
+        
+        <Image
+          src={product.img}
+          alt={product.name}
+          width={600}
+          height={700}
+          className="rounded-3xl"
+          priority
+        />
+
+        
+        <div>
+          <h1 className="text-4xl font-semibold">{product.name}</h1>
+
+          <p className="text-[#C08A5D] text-xl mt-3">
             {product.price}
           </p>
 
-          <p className="text-gray-600">
+          <p className="mt-6 text-gray-600">
             {product.description}
           </p>
 
-          <button className="w-full bg-black text-white py-4 rounded-full text-xs tracking-[0.25em] uppercase">
-            Add to Cart
+          <button className="mt-8 px-8 py-4 bg-black text-white rounded-full hover:opacity-80 transition">
+            Add to Bag
           </button>
         </div>
 
-      </section>
+      </div>
     </main>
   );
 }

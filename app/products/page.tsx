@@ -1,41 +1,50 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const products = [
-  {
-    name: "Midnight Stiletto",
-    price: "R1 299",
-    img: "/hero-heels.jpg",
-    href: "/products/midnight-stiletto",
-  },
-];
+import { products } from "@/data/products";
 
 export default function ProductsPage() {
   return (
     <main className="min-h-screen bg-[#F8F5F2] px-6 py-20">
-      <h1 className="text-4xl text-center mb-12">Products</h1>
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-5xl font-light text-center mb-4">
+          Our Collection
+        </h1>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {products.map((p, i) => (
-          <Link
-            key={i}
-            href={p.href}
-            className="bg-white rounded-2xl overflow-hidden shadow-md"
-          >
-            <Image
-              src={p.img}
-              alt={p.name}
-              width={500}
-              height={500}
-              className="w-full h-72 object-cover"
-            />
+        <p className="text-center text-gray-500 mb-16">
+          Curated heels and handbags for timeless elegance.
+        </p>
 
-            <div className="p-5">
-              <h2 className="font-medium">{p.name}</h2>
-              <p className="text-[#C08A5D]">{p.price}</p>
-            </div>
-          </Link>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {products.map((product) => (
+            <Link
+              key={product.id}
+              href={`/products/${product.slug}`}
+              className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300"
+            >
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={500}
+                height={500}
+                className="w-full h-72 object-cover"
+              />
+
+              <div className="p-5">
+                <h2 className="font-medium text-lg">
+                  {product.name}
+                </h2>
+
+                <p className="text-[#C08A5D] mt-2">
+                  {product.price}
+                </p>
+
+                <p className="text-sm text-gray-500 mt-2 capitalize">
+                  {product.category}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );

@@ -45,7 +45,7 @@ export const products = [
     name: "Nude Signature Heel",
     price: "R1 249",
     category: "heels",
-    image: "/nude-signature-heel.jpg",
+    image: "/nude.jpg",
     description:
       "A refined nude heel created for effortless sophistication.",
   },
